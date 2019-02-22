@@ -13,13 +13,8 @@
  *= require_tree .
  *= require_self
  */
-h1{
-	color:#FF9900;
-	text-align: center;
-	text-shadow: 5px 5px 1px #999999;
-    font-size: 50px;
-    font-weight: bold;
-}
+@import "bootstrap-sprockets";
+@import "bootstrap";
 
 #box{
 	text-align:center;
@@ -27,6 +22,11 @@ h1{
 
 #top{
 	background-image: url("fish.jpg");
+	color:#FF9900;
+	text-align: center;
+	text-shadow: 5px 5px 1px #999999;
+    font-size: 50px;
+    font-weight: bold;
 }
 
 

@@ -1,0 +1,67 @@
+<!--  <% @all.each do |post| %>
+    <p>タイトル</p>
+    <span>
+        <%=link_to post.title, "/posts/#{post.id}" %>
+    </span>
+ <% end %>
+
+ -->
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-4">
+			<%= form_for(@post) do |f| %>
+			<h4>タイトル</h4>
+			<%= f.text_field :title %>
+
+			<h4>本文</h4>
+			<%= f.text_area :body %>
+
+			<h4>天気</h4>
+			<%= f.text_field :weather %>
+
+			<h4>画像</h4>
+			<%= f.attachment_field :image %>
+
+			<h4><%= f.submit '投稿' %></h4>
+			<% end %>
+		</div>
+		<div class="col-md-8">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>タイトル</th>
+						<th>天気</th>
+						<th>本文</th>
+						<th>投稿時間</th>
+						<th>画像</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @all.each do |post| %>
+						<tr>
+							<th><%=link_to post.title, "/posts/#{post.id}" %></th>
+							<td><%= post.weather %></td>
+							<td><%= post.body %></td>
+							<td><%= post.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+							<td>
+								<% if post.image.nil? %>
+		    					<%= link_to image_tag("/assets/no_data.png", :size=>"100x100") ,post_path(post.id) %>
+					    		<% else %>
+					    		<%=link_to (attachment_image_tag post, :image, :fill, 100, 100, format: 'jpeg') ,post_path(post.id) %>
+					    		<% end %>
+							</td>
+
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
